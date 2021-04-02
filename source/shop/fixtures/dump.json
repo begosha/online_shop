@@ -1,0 +1,70 @@
+[
+{
+  "model": "shop.product",
+  "pk": 1,
+  "fields": {
+    "name": "Watermelon",
+    "description": "",
+    "category": 3,
+    "remainder": 12,
+    "price": "1.99"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 2,
+  "fields": {
+    "name": "Hammer",
+    "description": "The Thor's Hammer",
+    "category": 3,
+    "remainder": 1,
+    "price": "12090.00"
+  }
+},
+{
+  "model": "shop.category",
+  "pk": 1,
+  "fields": {
+    "category": "Other"
+  }
+},
+{
+  "model": "shop.category",
+  "pk": 2,
+  "fields": {
+    "category": "Food"
+  }
+},
+{
+  "model": "shop.category",
+  "pk": 3,
+  "fields": {
+    "category": "Tools"
+  }
+},
+{
+  "model": "shop.category",
+  "pk": 4,
+  "fields": {
+    "category": "Smartphones"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$216000$sQc4ObznTG2a$bD2zxvePyDPNJYfUrHmUFNUhIVPn0Glmgfu2tKPo14E=",
+    "last_login": "2021-04-02T08:40:23.767Z",
+    "is_superuser": true,
+    "username": "gosha",
+    "first_name": "",
+    "last_name": "",
+    "email": "begoshaaaa@gmail.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2021-04-02T08:26:40.845Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
