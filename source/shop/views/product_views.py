@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from ..models import Product, Category, CartItem, OrderProducts, Order
 from ..forms import SimpleSearchForm
 from django.urls import reverse
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.db.models import Q
 from django.utils.http import urlencode
 
@@ -40,3 +40,7 @@ class IndexView(ListView):
         if self.form.is_valid():
             return self.form.cleaned_data['search']
         return None
+
+class ProductView(DetailView):
+    model = Product
+    template_name = 'product/product_view.html'
