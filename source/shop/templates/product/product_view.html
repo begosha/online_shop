@@ -6,8 +6,9 @@
             <h2>{{ product.name }}</h2>
             <p>{{ product.description}}</p>
             <p> Quantity left: {{ product.remainder }}</p>
+            <p> PRICE: {{ product.price }}$</p>
             <p> Category: {{ product.category }}</p>
-            <a class="btn btn-outline-info" href="#">Update</a>
+            <a class="btn btn-outline-info" href="{% url 'product-update' product.id %}">Update</a>
             <button type="button" class="btn btn-outline-info waves-effect px-3" data-toggle="modal" data-target="#deletion">Delete
             </button>
         </div>
@@ -24,7 +25,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                  <a class="btn" href='#'>Delete</a>
+                  <a class="btn" href='{% url "product-delete" product.id %}'>Delete</a>
                 </div>
               </div>
             </div>
