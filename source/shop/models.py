@@ -3,7 +3,7 @@ from django.core.validators import MinValueValidator
 
 class Product(models.Model):
     name = models.CharField(max_length=100, null=False, blank=False, verbose_name='Product Name')
-    description = models.TextField(max_length=2000, verbose_name='Product Description')
+    description = models.TextField(max_length=2000, null=True, blank=True, verbose_name='Product Description')
     category = models.ForeignKey('shop.Category', related_name='product_category', on_delete=models.PROTECT,verbose_name='Product Category', null=False, blank=False)
     remainder = models.IntegerField(validators=(MinValueValidator(0),), verbose_name='Product Remainder')
     price = models.DecimalField(max_digits=7, decimal_places=2, verbose_name='Product Price')
