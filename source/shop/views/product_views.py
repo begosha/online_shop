@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from ..models import Product, Category, CartItem, OrderProducts, Order
-from ..forms import SimpleSearchForm
+from ..forms import SimpleSearchForm, ProductForm
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, DeleteView, UpdateView
 from django.db.models import Q
 from django.utils.http import urlencode
+
 
 class IndexView(ListView):
     template_name = 'product/index.html'
@@ -46,14 +47,13 @@ class ProductView(DetailView):
     template_name = 'product/product_view.html'
 
 class ProductUpdateView(UpdateView):
-
-    model = Product
-    template_name = 'prodcut/product_update_view.html'
     form_class = ProductForm
-    context_object_name = 'prodcut'
+    model = Product
+    template_name = 'product/product_update_view.html'
+    context_object_name = 'product'
 
     def get_success_url(self):
-        return reverse('product', kwargs={'pk': self.object.product.pk})
+        return reverse('product', kwargs={'pk': self.kwargs.get('pk')})
 
 class ProductDeleteView(DeleteView):
     model = Product
