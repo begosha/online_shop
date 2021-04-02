@@ -1,13 +1,13 @@
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import IndexView
+from .views import (IndexView, ProductView)
 
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
     # path('<int:pk>/', ProjectView.as_view(), name='project'),
-    # path('<int:pk>/task', TaskView.as_view(), name='task'),
+    path('<int:pk>/product', ProductView.as_view(), name='product'),
     # path('add/', ProjectCreate.as_view(), name='project-add'),
     # path('<int:pk>/update/project', ProjectUpdateView.as_view(), name='project-update'),
     # path('<int:pk>/add/', TaskCreate.as_view(), name='task_add'),
