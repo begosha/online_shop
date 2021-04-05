@@ -5,6 +5,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, DeleteView, UpdateView, CreateView
 from django.db.models import Q
 from django.utils.http import urlencode
+from django.views.generic.edit import FormMixin
 
 
 class IndexView(ListView):
