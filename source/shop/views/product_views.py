@@ -51,7 +51,6 @@ class ProductCreateView(CreateView):
         product = Product()
         for key, value in form.cleaned_data.items():
             setattr(product, key, value)
-        product.save()
         return super().form_valid(form)
 
     def get_success_url(self):
