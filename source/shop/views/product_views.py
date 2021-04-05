@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from ..models import Product, Category, CartItem, OrderProducts, Order
 from ..forms import SimpleSearchForm, ProductForm
 from django.urls import reverse, reverse_lazy
-from django.views.generic import ListView, DetailView, DeleteView, UpdateView
+from django.views.generic import ListView, DetailView, DeleteView, UpdateView, CreateView
 from django.db.models import Q
 from django.utils.http import urlencode
 
@@ -11,7 +11,7 @@ class IndexView(ListView):
     template_name = 'product/index.html'
     context_object_name = 'products'
     model = Product
-    ordering = ['-category']
+    ordering = ['-category', '-name']
     paginate_by = 5
     paginate_orphans = 2
 
@@ -42,6 +42,21 @@ class IndexView(ListView):
             return self.form.cleaned_data['search']
         return None
 
+class ProductCreateView(CreateView):
+    template_name = 'product/product_add_view.html'
+    form_class = ProductForm
+    model = Product
+
+    def form_valid(self, form):
+        product = Product()
+        for key, value in form.cleaned_data.items():
+            setattr(product, key, value)
+        product.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('index')
+
 class ProductView(DetailView):
     model = Product
     template_name = 'product/product_view.html'
@@ -57,7 +72,12 @@ class ProductUpdateView(UpdateView):
 
 class ProductDeleteView(DeleteView):
     model = Product
-    template_name = 'product/index.html'
     context_object_name = 'product'
     success_url = reverse_lazy('index')
+
+    def get(self, request, *args, **kwargs):
+        return super().delete(request, *args, **kwargs)
+
+
+
 
