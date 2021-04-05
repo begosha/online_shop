@@ -9,9 +9,14 @@
     {% include 'partial/simple_search.html' %}
     {% for product in products %}
     <div class="task">
-            <h2>{{ product.name }} <a class="btn btn-outline-info waves-effect px-3" href="#"><i class="fas fa-cart-plus"></i></a></h2>
+            <h2>{{ product.name }}</h2>
             <p>
                 <a href="{% url 'product' product.pk %}">See More...</a>
+                <form action='{% url "cart-add" product.id %}' method="POST">
+                    {% csrf_token %}
+			        <input type="number" id="quantity" name="quantity">
+                    <input class="btn btn-primary" type="submit" value="ADD TO CART">
+		        </form>
             </p>
             <hr>
     </div>
