@@ -1,11 +1,12 @@
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import (IndexView, ProductView, ProductDeleteView, ProductUpdateView, ProductCreateView, CartAddProductView)
+from .views import (IndexView, ProductView, ProductDeleteView, ProductUpdateView, ProductCreateView, CartAddProductView, CartView)
 
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
+    path('/cart', CartView.as_view(), name='cart'),
     # path('<int:pk>/', ProjectView.as_view(), name='project'),
     path('<int:pk>/product', ProductView.as_view(), name='product'),
     path('add/', ProductCreateView.as_view(), name='product-add'),

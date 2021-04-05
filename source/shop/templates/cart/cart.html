@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}{% endblock %}
+{% block content %}
+    <div class="header-info-block">
+            <h1>Cart</h1>
+            <p>Online shop for Jujutsu Kaisen Fans</p>
+        </div>
+    
+    {% include 'partial/simple_search.html' %}
+    {% for product in cart_products %}
+    <div class="task">
+            <h2>{{ product.item.name }}</h2>
+            <p>Quantity: {{ product.quantity }}</p>
+            <p>
+                <a href="{% url 'product' product.item.pk %}">See More...</a>
+            </p>
+            <hr>
+    </div>
+    {% endfor %}
+    {% if is_paginated %}
+
+    {% include 'partial/pagination.html' %}
+
+    {% endif %}
+{% endblock %}
