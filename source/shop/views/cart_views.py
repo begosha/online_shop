@@ -25,24 +25,22 @@ class CartAddProductView(CreateView):
         product = Product.objects.get(id=kwargs.get('pk'))
         print(product)
         quantity = int(request.POST.get('quantity'))
-        try:
-            cart_item = CartItem.objects.get(item=product)
-            if quantity <= product.remainder:
-
+        if quantity <= product.remainder:
+            try:
+                cart_item = CartItem.objects.get(item=product)
                 cart_item.quantity += quantity
                 product.remainder = product.remainder - quantity
                 cart_item.save()
                 product.save()
-            else:
-                return redirect(self.redirect_url)
-        except CartItem.DoesNotExist:
-            CartItem.objects.create(
-                item=product,
-                quantity=quantity
-            )
-            product.remainder = product.remainder - quantity
-            product.save()
-
+            except CartItem.DoesNotExist:
+                CartItem.objects.create(
+                    item=product,
+                    quantity=quantity
+                )
+                product.remainder = product.remainder - quantity
+                product.save()
+        else:
+            return redirect(self.redirect_url)
         return redirect(self.redirect_url)
 
 class CartDeleteProductView(DeleteView):

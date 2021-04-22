@@ -14,7 +14,7 @@
                 <a href="{% url 'product' product.pk %}">See More...</a>
                 <form action='{% url "cart-add" product.id %}' method="POST">
                     {% csrf_token %}
-			        <input type="number" id="quantity" name="quantity">
+			        <input type="number" id="quantity" name="quantity" required>
                     <input class="btn btn-primary" type="submit" value="ADD TO CART">
 		        </form>
             </p>

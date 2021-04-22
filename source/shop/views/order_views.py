@@ -19,11 +19,13 @@ class MakeOrderView(CreateView):
         order.save()
         make_order.order = order
         for item in CartItem.objects.all():
+            make_order = OrderProducts()
+            make_order.order = order
             make_order.product = item.item
             make_order.quantity=item.quantity
-        make_order.save()
+            make_order.save()
         CartItem.objects.all().delete()
-        return super().form_valid(form)
+        return self.get_success_url()
 
     def get_success_url(self):
-        return reverse('index')
+        return redirect('index')
