@@ -45,9 +45,11 @@
                                 </li>
                                 {% endif %}
                         {% endif %}
+                        {% if perms.shop.add_product %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'product-add' %}">Add Product</a>
                         </li>
+                        {% endif %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'cart' %}">See Products in Cart</a>
                         </li>
