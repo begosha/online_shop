@@ -45,7 +45,9 @@ class CartAddProductView(CreateView):
                 product.save()
                 cart[str(product.id)] = quantity
             request.session['cart'] = cart
+            messages.add_message(request, messages.SUCCESS, f'Added {quantity} {product.name} to your cart!')
         else:
+            messages.add_message(request, messages.ERROR, f'The quantity of {product.name} in our storage is less than your desirable amount :(')
             return redirect(self.redirect_url)
         return redirect(self.redirect_url)
 
@@ -56,7 +58,7 @@ class CartAddProductView(CreateView):
         return cart
 
 class CartDeleteProductView(DeleteView):
-    model = CartItem
+    model = Product
     redirect_url = '/products/'
 
     def get_cart(self):
@@ -77,6 +79,7 @@ class CartDeleteProductView(DeleteView):
             product.remainder += cart[str(product.id)]
             product.save()
         request.session['cart'] = cart
+        messages.add_message(request, messages.WARNING, f'The {product.name} has been removed!')
         return redirect(self.redirect_url)
 
 
