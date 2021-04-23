@@ -1,12 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from shop.models import Product, Category, CartItem, OrderProducts, Order
+from shop.models import Product
 from ..forms import OrderForm
-from django.urls import reverse, reverse_lazy
-from django.views.generic import ListView, DetailView, DeleteView, UpdateView, CreateView, View
+from django.views.generic import ListView, DeleteView, CreateView, View
 from django.views.generic.edit import FormMixin
-from decimal import Decimal
 from django.contrib.sessions.models import Session
-
+from django.contrib import messages
 
 
 class CartView(ListView, FormMixin):
