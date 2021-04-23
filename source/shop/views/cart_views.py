@@ -59,7 +59,7 @@ class CartAddProductView(CreateView):
 
 class CartDeleteProductView(DeleteView):
     model = Product
-    redirect_url = '/products/'
+    redirect_url = '/products/cart'
 
     def get_cart(self):
         cart = self.request.session.get('cart', {})
@@ -70,16 +70,22 @@ class CartDeleteProductView(DeleteView):
     def post(self, request, *args, **kwargs):
         product = Product.objects.get(id=kwargs.get('pk'))
         cart = self.get_cart()
-        if cart[str(product.id)] == 1:
-            del cart[str(product.id)]
-            product.remainder += 1
-            product.save()
+        quantity = int(request.POST.get('quantity'))
+        if quantity <= cart[str(product.id)]:
+            if cart[str(product.id)] == 1:
+                del cart[str(product.id)]
+                product.remainder += 1
+                product.save()
+            else:
+                cart[str(product.id)] = cart[str(product.id)] - quantity
+                product.remainder += quantity
+                product.save()
+            request.session['cart'] = cart
+            messages.add_message(request, messages.WARNING, f'{quantity} {product.name} products have/s been removed!')
         else:
-            cart[str(product.id)] = cart[str(product.id)] - 1
-            product.remainder += cart[str(product.id)]
-            product.save()
-        request.session['cart'] = cart
-        messages.add_message(request, messages.WARNING, f'The {product.name} has been removed!')
+            messages.add_message(request, messages.ERROR, f'The quantity of {product.name} in your cart is less than you want to remove!')
+            
+            return redirect(self.redirect_url)
         return redirect(self.redirect_url)
 
 
