@@ -28,16 +28,12 @@ class CartView(ListView, FormMixin):
         return queryset
 
 
-
-
 class CartAddProductView(CreateView):
     model = Product
     redirect_url = '/products/'
 
     def post(self, request, *args, **kwargs):
-        cart = request.session.get('cart', {})
-        if not cart:
-            cart = request.session['cart'] = {}
+        cart = self.get_cart()
         product = Product.objects.get(id=kwargs.get('pk'))
         quantity = int(request.POST.get('quantity'))
         if quantity <= product.remainder:
@@ -55,23 +51,34 @@ class CartAddProductView(CreateView):
             return redirect(self.redirect_url)
         return redirect(self.redirect_url)
 
+    def get_cart(self):
+        cart = self.request.session.get('cart', {})
+        if not cart:
+            cart = self.request.session['cart'] = {}
+        return cart
 
 class CartDeleteProductView(DeleteView):
     model = CartItem
     redirect_url = '/products/'
 
+    def get_cart(self):
+        cart = self.request.session.get('cart', {})
+        if not cart:
+            cart = self.request.session['cart'] = {}
+        return cart
+
     def post(self, request, *args, **kwargs):
         product = Product.objects.get(id=kwargs.get('pk'))
-        cart_item = CartItem.objects.get(item=product)
-        if cart_item.quantity == 1:
-            cart_item.delete()
+        cart = self.get_cart()
+        if cart[str(product.id)] == 1:
+            del cart[str(product.id)]
             product.remainder += 1
             product.save()
         else:
-            cart_item.quantity = cart_item.quantity - 1
-            cart_item.save()
-            product.remainder += cart_item.quantity
+            cart[str(product.id)] = cart[str(product.id)] - 1
+            product.remainder += cart[str(product.id)]
             product.save()
+        request.session['cart'] = cart
         return redirect(self.redirect_url)
 
 
