@@ -14,7 +14,7 @@
             <p>
                 <a href="{% url 'product' product.product.pk %}">See More...</a>
 
-                <form action='#' method="POST">
+                <form action='{% url "cart-delete" product.product.pk %}' method="POST">
                     {% csrf_token %}
                     <input class="btn btn-primary" type="submit" value="REMOVE">
 		        </form>
