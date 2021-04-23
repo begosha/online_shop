@@ -21,7 +21,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         {% if user.is_authenticated %}
-                            <li class="nav-item" style="padding-top: 7px">Hello, <a href="#">{{ user.username }}</a>!</li>
+                            <li class="nav-item" style="padding-top: 7px">Hello, {{ user.username }}!</li>
                             <li class="nav-item">
                                     <a class="nav-link" href="{% url 'logout' %}?next={{ request.get_full_path }}">Sign out</a>
                                 </li>
@@ -52,6 +52,9 @@
                         {% endif %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'cart' %}">See Products in Cart</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'order-list' %}">See Orders</a>
                         </li>
                     </ul>
                 </div>

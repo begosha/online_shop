@@ -62,7 +62,7 @@ class CartDeleteProductView(DeleteView):
     redirect_url = '/products/cart'
 
     def get_cart(self):
-        cart = self.request.session.get('cart', {})
+        cart = self.request.session.get('cart')
         if not cart:
             cart = self.request.session['cart'] = {}
         return cart

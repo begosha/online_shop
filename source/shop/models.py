@@ -42,6 +42,12 @@ class CartItem(models.Model):
         return "{} {}".format(self.item, self.quantity)
 
 class Order(models.Model):
+    user_order = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='order'
+    )
     user_name = models.CharField(max_length=20, null=False, blank=False, verbose_name='User Name')
     phone = models.CharField(max_length=25, null=False, blank=False, verbose_name='User Phone Number')
     address = models.CharField(max_length=150, null=False, blank=False, verbose_name='User Address')
@@ -56,12 +62,6 @@ class Order(models.Model):
         return "{} {} {} {}".format(self.pk, self.user_name, self.phone, self.address)
 
 class OrderProducts(models.Model):
-    user_order = models.ForeignKey(
-        get_user_model(),
-        on_delete=models.SET_NULL,
-        null=True,
-        related_name='order'
-    )
     product = models.ForeignKey('shop.Product', related_name='order_product', on_delete=models.CASCADE,  verbose_name='Product to Buy', null=False, blank=False)
     quantity = models.IntegerField(validators=(MinValueValidator(0),), verbose_name='Product Quantity')
     order = models.ForeignKey('shop.Order', related_name='order', on_delete=models.CASCADE, verbose_name='Order', null=False, blank=False)
@@ -72,4 +72,4 @@ class OrderProducts(models.Model):
         verbose_name_plural = 'Order_Products'
 
     def __str__(self):
-        return "{} {} {} {}".format(self.pk, self.product, self.quantity, self.order)
+        return "Id:{}, Product: {}, Quantity: {},Order: {}".format(self.pk, self.product, self.quantity, self.order.pk)

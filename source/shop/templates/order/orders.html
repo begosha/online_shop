@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}{% endblock %}
+{% block content %}
+    <div class="header-info-block">
+            <h1>Online Shop</h1>
+            <p>Online shop for Jujutsu Kaisen Fans</p>
+        </div>
+    {% if orders %}
+        {% for order in orders %}
+        <div class="task">
+                <h2>Order №{{ order.pk }}</h2>
+                {% for sub in order.order.all %}
+                <p>{{ sub.product.name }}: {{ sub.quantity }}</p>
+                {% endfor %}
+                <hr>
+        </div>
+        {% endfor %}
+    {% else %}
+        <h2>No orders yet</h2>
+    {% endif %}
+    {% if is_paginated %}
+
+    {% include 'partial/pagination.html' %}
+
+    {% endif %}
+{% endblock %}

@@ -1,7 +1,7 @@
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import (IndexView, ProductView, ProductDeleteView, ProductUpdateView, ProductCreateView, CartAddProductView, CartView, CartDeleteProductView, MakeOrderView)
+from .views import (IndexView, ProductView, ProductDeleteView, ProductUpdateView, ProductCreateView, CartAddProductView, CartView, CartDeleteProductView, MakeOrderView, OrderList)
 
 
 urlpatterns = [
@@ -14,5 +14,5 @@ urlpatterns = [
     path('<int:pk>/delete/cart', CartDeleteProductView.as_view(), name='cart-delete'),
     path('<int:pk>/add/cart', CartAddProductView.as_view(), name='cart-add'),
     path('order', MakeOrderView.as_view(), name='order'),
-
+    path('order/list', OrderList.as_view(), name='order-list')
 ]

@@ -23,15 +23,17 @@
             <hr>
     </div>
     {% endfor %}
-    <div class="task-form">
-            <form action='{% url "order"%}' method="POST">
-                {% include "order/order_form.html" with button_text="ORDER" %}
-            </form>
-        </div>
-    {% if is_paginated %}
+    {% if user.is_authenticated  %}
+        <div class="task-form">
+                <form action='{% url "order"%}' method="POST">
+                    {% include "order/order_form.html" with button_text="ORDER" %}
+                </form>
+            </div>
+        {% if is_paginated %}
 
-    {% include 'partial/pagination.html' %}
+        {% include 'partial/pagination.html' %}
 
+        {% endif %}
     {% endif %}
 
 {% endblock %}
