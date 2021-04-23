@@ -4,44 +4,57 @@ from ..forms import OrderForm
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, DeleteView, UpdateView, CreateView, View
 from django.views.generic.edit import FormMixin
+from decimal import Decimal
+from django.contrib.sessions.models import Session
+
+
 
 class CartView(ListView, FormMixin):
     template_name = 'cart/cart.html'
     context_object_name = 'cart_products'
-    model = CartItem
     paginate_by = 5
     paginate_orphans = 2
     form_class = OrderForm
 
+    def get_queryset(self):
+        queryset = []
+        carts = self.request.session.get('cart', {})
+        print(carts)
+        for id, count in carts.items():
+            product = {}
+            product['product'] = Product.objects.get(pk=id)
+            product['count'] = count
+            queryset.append(product)
+        return queryset
 
 
 
 
 class CartAddProductView(CreateView):
-    model = CartItem
+    model = Product
     redirect_url = '/products/'
 
     def post(self, request, *args, **kwargs):
+        cart = request.session.get('cart', {})
+        if not cart:
+            cart = request.session['cart'] = {}
         product = Product.objects.get(id=kwargs.get('pk'))
-        print(product)
         quantity = int(request.POST.get('quantity'))
         if quantity <= product.remainder:
             try:
-                cart_item = CartItem.objects.get(item=product)
-                cart_item.quantity += quantity
-                product.remainder = product.remainder - quantity
-                cart_item.save()
-                product.save()
-            except CartItem.DoesNotExist:
-                CartItem.objects.create(
-                    item=product,
-                    quantity=quantity
-                )
                 product.remainder = product.remainder - quantity
                 product.save()
+                product_count = cart[str(product.id)]
+                cart[str(product.id)] = product_count + quantity
+            except KeyError:
+                product.remainder = product.remainder - quantity
+                product.save()
+                cart[str(product.id)] = quantity
+            request.session['cart'] = cart
         else:
             return redirect(self.redirect_url)
         return redirect(self.redirect_url)
+
 
 class CartDeleteProductView(DeleteView):
     model = CartItem
