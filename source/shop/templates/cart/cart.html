@@ -16,6 +16,7 @@
 
                 <form action='{% url "cart-delete" product.product.pk %}' method="POST">
                     {% csrf_token %}
+                    <input type="number" id="quantity" name="quantity" required>
                     <input class="btn btn-primary" type="submit" value="REMOVE">
 		        </form>
             </p>
