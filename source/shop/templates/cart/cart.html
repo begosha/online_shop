@@ -8,12 +8,13 @@
 
     {% for product in cart_products %}
     <div class="task">
-            <h2>{{ product.item.name }}</h2>
-            <p>Quantity: {{ product.quantity }}</p>
+            <!-- <h1>{{ product }}</h1> -->
+            <h2>{{ product.product.name }}</h2>
+            <p>Quantity: {{ product.count }}</p>
             <p>
-                <a href="{% url 'product' product.item.pk %}">See More...</a>
+                <a href="{% url 'product' product.product.pk %}">See More...</a>
 
-                <form action='{% url "cart-delete" product.item.pk %}' method="POST">
+                <form action='#' method="POST">
                     {% csrf_token %}
                     <input class="btn btn-primary" type="submit" value="REMOVE">
 		        </form>
