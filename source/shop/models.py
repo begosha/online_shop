@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator
+from django.contrib.auth import get_user_model
 
 class Product(models.Model):
     name = models.CharField(max_length=100, null=False, blank=False, verbose_name='Product Name')
@@ -55,6 +56,12 @@ class Order(models.Model):
         return "{} {} {} {}".format(self.pk, self.user_name, self.phone, self.address)
 
 class OrderProducts(models.Model):
+    user_order = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='order'
+    )
     product = models.ForeignKey('shop.Product', related_name='order_product', on_delete=models.CASCADE,  verbose_name='Product to Buy', null=False, blank=False)
     quantity = models.IntegerField(validators=(MinValueValidator(0),), verbose_name='Product Quantity')
     order = models.ForeignKey('shop.Order', related_name='order', on_delete=models.CASCADE, verbose_name='Order', null=False, blank=False)
