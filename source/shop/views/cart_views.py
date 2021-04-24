@@ -6,7 +6,6 @@ from django.views.generic.edit import FormMixin
 from django.contrib.sessions.models import Session
 from django.contrib import messages
 
-
 class CartView(ListView, FormMixin):
     template_name = 'cart/cart.html'
     context_object_name = 'cart_products'
@@ -16,13 +15,15 @@ class CartView(ListView, FormMixin):
 
     def get_queryset(self):
         queryset = []
+        total = 0
         carts = self.request.session.get('cart', {})
-        print(carts)
         for id, count in carts.items():
             product = {}
             product['product'] = Product.objects.get(pk=id)
             product['count'] = count
+            total += Product.objects.get(pk=id).price * count
             queryset.append(product)
+        queryset.append(total)
         return queryset
 
 
@@ -36,13 +37,9 @@ class CartAddProductView(CreateView):
         quantity = int(request.POST.get('quantity'))
         if quantity <= product.remainder:
             try:
-                product.remainder = product.remainder - quantity
-                product.save()
                 product_count = cart[str(product.id)]
                 cart[str(product.id)] = product_count + quantity
             except KeyError:
-                product.remainder = product.remainder - quantity
-                product.save()
                 cart[str(product.id)] = quantity
             request.session['cart'] = cart
             messages.add_message(request, messages.SUCCESS, f'Added {quantity} {product.name} to your cart!')
@@ -74,12 +71,8 @@ class CartDeleteProductView(DeleteView):
         if quantity <= cart[str(product.id)]:
             if cart[str(product.id)] == 1:
                 del cart[str(product.id)]
-                product.remainder += 1
-                product.save()
             else:
                 cart[str(product.id)] = cart[str(product.id)] - quantity
-                product.remainder += quantity
-                product.save()
             request.session['cart'] = cart
             messages.add_message(request, messages.WARNING, f'{quantity} {product.name} products have/s been removed!')
         else:

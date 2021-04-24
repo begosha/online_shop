@@ -5,24 +5,41 @@
             <h1>Cart</h1>
             <p>Online shop for Jujutsu Kaisen Fans</p>
         </div>
-
-    {% for product in cart_products %}
-    <div class="task">
-            <!-- <h1>{{ product }}</h1> -->
-            <h2>{{ product.product.name }}</h2>
-            <p>Quantity: {{ product.count }}</p>
-            <p>
-                <a href="{% url 'product' product.product.pk %}">See More...</a>
-
-                <form action='{% url "cart-delete" product.product.pk %}' method="POST">
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Remove From Cart</th>
+              </tr>
+            </thead>
+    {% with cart_products|slice:":-1" as list1%}
+        {% for product in list1 %}
+            <tbody>
+            <tr>
+                <td>{{ product.product.name }}</td>
+                <td>{{ product.count }}</td>
+                <td>{{ product.product.price }}$</td>
+                <td><form action='{% url "cart-delete" product.product.pk %}' method="POST">
                     {% csrf_token %}
                     <input type="number" id="quantity" name="quantity" required>
                     <input class="btn btn-primary" type="submit" value="REMOVE">
 		        </form>
-            </p>
-            <hr>
-    </div>
-    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+    {% endwith %}
+    {% with cart_products|slice:"-1:" as list2%}
+            <tr>
+                {% for sub in list2 %}
+                <td>Total: {{ sub }}$</td>
+                {% endfor %}
+            </tr>
+    {% endwith %}
+        </tbody>
+      </table>
+    
     {% if user.is_authenticated  %}
         <div class="task-form">
                 <form action='{% url "order"%}' method="POST">

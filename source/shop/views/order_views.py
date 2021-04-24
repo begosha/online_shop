@@ -14,8 +14,10 @@ class OrderList(ListView):
     paginate_orphans = 2
     
     def get_queryset(self):
+        total = 0
         queryset = super().get_queryset()
         queryset = queryset.filter(user_order=self.request.user.id)
+        
         return queryset
 
 
@@ -30,14 +32,16 @@ class MakeOrderView(CreateView):
         for key, value in form.cleaned_data.items():
             setattr(order, key, value)
         order.save()
-        print(order)
         for id in cart:
+            store_product = Product.objects.get(pk=id)
             make_order = OrderProducts()
-            product = Product.objects.get(pk=id)
+            product = store_product
             make_order.product = product
             make_order.quantity=cart[str(product.id)]
+            store_product.remainder -= int(make_order.quantity)
             make_order.order = order
             make_order.save()
+            store_product.save()
         self.request.session['cart'] = {}
         return self.get_success_url()
 
