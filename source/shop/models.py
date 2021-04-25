@@ -73,3 +73,6 @@ class OrderProducts(models.Model):
 
     def __str__(self):
         return "Id:{}, Product: {}, Quantity: {},Order: {}".format(self.pk, self.product, self.quantity, self.order.pk)
+
+    def order_total(self):
+        return self.quantity * self.product.price

@@ -5,19 +5,28 @@
             <h1>Online Shop</h1>
             <p>Online shop for Jujutsu Kaisen Fans</p>
         </div>
+    <div class="task">
     {% if orders %}
         {% for order in orders %}
-        <div class="task">
-                <h2>Order №{{ order.pk }}</h2>
-                {% for sub in order.order.all %}
-                <p>{{ sub.product.name }}: {{ sub.quantity }}</p>
+            {% with order|slice:":-1" as list1%}
+                {% for sublist in list1 %}
+                    <h2>Order №{{ sublist.pk }}</h2>
+                        {% for sub in sublist.order.all %}
+                            <p>{{ sub.product.name }}: {{ sub.quantity }} x {{ sub.product.price }}$</p>
+                        {% endfor %}
                 {% endfor %}
-                <hr>
-        </div>
+            {% endwith %}
+            {% with order|slice:"-1:" as list2%}
+                {% for sublist in list2 %}
+                    <p>Total: {{ sublist }}$</p>
+                {% endfor %}
+            {% endwith %}
         {% endfor %}
+        <hr> 
     {% else %}
         <h2>No orders yet</h2>
     {% endif %}
+    </div>  
     {% if is_paginated %}
 
     {% include 'partial/pagination.html' %}

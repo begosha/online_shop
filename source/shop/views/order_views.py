@@ -14,10 +14,13 @@ class OrderList(ListView):
     paginate_orphans = 2
     
     def get_queryset(self):
-        total = 0
-        queryset = super().get_queryset()
-        queryset = queryset.filter(user_order=self.request.user.id)
-        
+        queryset = []
+        for order in Order.objects.filter(user_order=self.request.user.id):
+            total = 0
+            for product_order in order.order.all():
+                total += product_order.order_total()
+            queryset.append((order,total))
+        print(queryset)
         return queryset
 
 
