@@ -39,8 +39,6 @@
     {% endwith %}
         </tbody>
       </table>
-    
-    {% if user.is_authenticated  %}
         <div class="task-form">
                 <form action='{% url "order"%}' method="POST">
                     {% include "order/order_form.html" with button_text="ORDER" %}
@@ -50,7 +48,6 @@
 
         {% include 'partial/pagination.html' %}
 
-        {% endif %}
     {% endif %}
 
 {% endblock %}

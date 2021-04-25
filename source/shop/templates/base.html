@@ -53,9 +53,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'cart' %}">See Products in Cart</a>
                         </li>
+                        {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'order-list' %}">See Orders</a>
                         </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

@@ -27,7 +27,10 @@ class MakeOrderView(CreateView):
 
     def form_valid(self, form, **kwargs):
         order = Order()
-        order.user_order=self.request.user
+        try:
+            order.user_order=self.request.user
+        except ValueError:
+            order.user_order=None
         cart = self.request.session.get('cart')
         for key, value in form.cleaned_data.items():
             setattr(order, key, value)
