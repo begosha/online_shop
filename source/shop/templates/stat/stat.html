@@ -7,6 +7,7 @@
         </div>
     
     <div class="task">
+        {% if user.is_authenticated %}
             <h2>Time spent on this Web Site:</h2>
             {% with time|slice:":1" as list1 %}
             {% for days in list1 %}
@@ -23,6 +24,8 @@
             <p>Minutes: {{ minutes }}</p>
             {% endfor %}
             {% endwith %}
-            
+        {% else %}
+        <h1>Login First!!</h1>  
     </div>
+    {% endif %}
 {% endblock %}

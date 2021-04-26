@@ -6,9 +6,12 @@ class StatView(TemplateView):
     template_name = "stat/stat.html"
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['time'] = []
-        context['time'].append((datetime.now(timezone.utc) - self.request.user.last_login).days)
-        context['time'].append(((datetime.now(timezone.utc) - self.request.user.last_login).seconds)//3600)
-        context['time'].append(((datetime.now(timezone.utc) - self.request.user.last_login).seconds//60)%60)
+        try:
+            context = super().get_context_data(**kwargs)
+            context['time'] = []
+            context['time'].append((datetime.now(timezone.utc) - self.request.user.last_login).days)
+            context['time'].append(((datetime.now(timezone.utc) - self.request.user.last_login).seconds)//3600)
+            context['time'].append(((datetime.now(timezone.utc) - self.request.user.last_login).seconds//60)%60)
+        except AttributeError:
+            context = {}
         return context
