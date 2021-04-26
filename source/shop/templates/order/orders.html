@@ -5,12 +5,13 @@
             <h1>Online Shop</h1>
             <p>Online shop for Jujutsu Kaisen Fans</p>
         </div>
-    <div class="task">
+    <div class="orders">
     {% if orders %}
         {% for order in orders %}
+        <div class="order">
             {% with order|slice:":-1" as list1%}
                 {% for sublist in list1 %}
-                    <h2>Order №{{ sublist.pk }}</h2>
+                    <h2>Order on {{ sublist.created_at }}</h2>
                         {% for sub in sublist.order.all %}
                             <p>{{ sub.product.name }}: {{ sub.quantity }} x {{ sub.product.price }}$</p>
                         {% endfor %}
@@ -18,9 +19,10 @@
             {% endwith %}
             {% with order|slice:"-1:" as list2%}
                 {% for sublist in list2 %}
-                    <p>Total: {{ sublist }}$</p>
+                    <span>Total: {{ sublist }}$</span>
                 {% endfor %}
             {% endwith %}
+        </div>
         {% endfor %}
         <hr> 
     {% else %}

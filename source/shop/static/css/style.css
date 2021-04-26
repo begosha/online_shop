@@ -162,3 +162,26 @@ body{
 
     border: solid 1px gray;
 }
+.orders {
+	border: 3px solid #424242;
+	text-align: center;
+	margin-top: 20px;
+	padding-top: 10px;
+}
+
+	.order h2{
+		color: #5bc0de;
+		text-transform: uppercase;
+		font-weight: bold;
+	}
+	.order p {
+		text-transform: capitalize;
+		color: #424242;
+		font-size: 20px;
+	}
+	.order span {
+		text-transform: uppercase;
+		font-weight: bold;
+		font-size: 20px;
+		text-decoration-line: underline;
+	}

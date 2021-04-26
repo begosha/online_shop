@@ -3,22 +3,132 @@
   "model": "shop.product",
   "pk": 1,
   "fields": {
-    "name": "Watermelon",
+    "name": "Watermelon!",
     "description": "",
     "category": 3,
-    "remainder": 12,
+    "remainder": 0,
     "price": "1.99"
   }
 },
 {
   "model": "shop.product",
-  "pk": 2,
+  "pk": 6,
   "fields": {
-    "name": "Hammer",
-    "description": "The Thor's Hammer",
+    "name": "Satoru Gojo",
+    "description": "Yes, this man is for sale!!",
+    "category": 2,
+    "remainder": 0,
+    "price": "10000.00"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 8,
+  "fields": {
+    "name": "Sarah Waynez",
+    "description": "I love her so much",
+    "category": 2,
+    "remainder": 34,
+    "price": "10000.00"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 9,
+  "fields": {
+    "name": "Donald  Trump",
+    "description": "This red beard bi$ch",
+    "category": 1,
+    "remainder": 0,
+    "price": "1.00"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 10,
+  "fields": {
+    "name": "Barak Obama",
+    "description": "eklkwnflknfewl",
+    "category": 1,
+    "remainder": 0,
+    "price": "122.00"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 11,
+  "fields": {
+    "name": "arbuz",
+    "description": "wefcwef",
+    "category": 1,
+    "remainder": 139,
+    "price": "12.00"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 12,
+  "fields": {
+    "name": "Phone",
+    "description": "Phoooone",
+    "category": 4,
+    "remainder": 128,
+    "price": "12200.00"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 13,
+  "fields": {
+    "name": "Wallet",
+    "description": "Wallet for your coins",
+    "category": 1,
+    "remainder": 97,
+    "price": "1233.00"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 14,
+  "fields": {
+    "name": "Barak Obama",
+    "description": "23d23ed2wdwqcdfe",
     "category": 3,
-    "remainder": 1,
-    "price": "12090.00"
+    "remainder": 21,
+    "price": "11222.00"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 15,
+  "fields": {
+    "name": "Grain",
+    "description": "More grain for you",
+    "category": 3,
+    "remainder": 20,
+    "price": "122.00"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 16,
+  "fields": {
+    "name": "Blender",
+    "description": "For you to cook",
+    "category": 3,
+    "remainder": 12,
+    "price": "130.00"
+  }
+},
+{
+  "model": "shop.product",
+  "pk": 17,
+  "fields": {
+    "name": "Mercedes",
+    "description": "For you to drive",
+    "category": 1,
+    "remainder": 5,
+    "price": "10000.00"
   }
 },
 {
@@ -50,21 +160,602 @@
   }
 },
 {
-  "model": "auth.user",
+  "model": "shop.cartitem",
+  "pk": 9,
+  "fields": {
+    "item": 6,
+    "quantity": 11
+  }
+},
+{
+  "model": "shop.cartitem",
+  "pk": 10,
+  "fields": {
+    "item": 8,
+    "quantity": 48
+  }
+},
+{
+  "model": "shop.cartitem",
+  "pk": 11,
+  "fields": {
+    "item": 9,
+    "quantity": 8
+  }
+},
+{
+  "model": "shop.cartitem",
+  "pk": 12,
+  "fields": {
+    "item": 10,
+    "quantity": 2
+  }
+},
+{
+  "model": "shop.order",
   "pk": 1,
   "fields": {
-    "password": "pbkdf2_sha256$216000$sQc4ObznTG2a$bD2zxvePyDPNJYfUrHmUFNUhIVPn0Glmgfu2tKPo14E=",
-    "last_login": "2021-04-02T08:40:23.767Z",
-    "is_superuser": true,
-    "username": "gosha",
-    "first_name": "",
-    "last_name": "",
-    "email": "begoshaaaa@gmail.com",
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2021-04-02T08:26:40.845Z",
-    "groups": [],
-    "user_permissions": []
+    "user_order": null,
+    "user_name": "Sarah Waynez",
+    "phone": "+996556602622",
+    "address": "Djal-Artis, 15, 1201",
+    "created_at": "2021-04-05T12:45:59.596Z"
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 2,
+  "fields": {
+    "user_order": null,
+    "user_name": "Sarah Waynez",
+    "phone": "+996556602622",
+    "address": "Djal-Artis, 15, 1201",
+    "created_at": "2021-04-05T12:45:59.620Z"
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 3,
+  "fields": {
+    "user_order": null,
+    "user_name": "Sarah Waynez",
+    "phone": "+996556602622",
+    "address": "Djal-Artis, 15, 1201",
+    "created_at": "2021-04-22T13:29:14.417Z"
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 4,
+  "fields": {
+    "user_order": null,
+    "user_name": "Sarah Waynez",
+    "phone": "+996556602622",
+    "address": "Djal-Artis, 15, 1201",
+    "created_at": "2021-04-22T13:30:26.903Z"
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 5,
+  "fields": {
+    "user_order": null,
+    "user_name": "Sarah Waynez",
+    "phone": "+996556602622",
+    "address": "Djal-Artis, 15, 1201",
+    "created_at": "2021-04-22T13:30:43.327Z"
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 6,
+  "fields": {
+    "user_order": null,
+    "user_name": "Barak",
+    "phone": "+996556602622",
+    "address": "Djal-Artis, 15, 1201",
+    "created_at": "2021-04-23T09:56:36.142Z"
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 7,
+  "fields": {
+    "user_order": null,
+    "user_name": "Barak",
+    "phone": "+996556602622",
+    "address": "Djal-Artis, 15, 1201",
+    "created_at": "2021-04-23T09:56:58.759Z"
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 8,
+  "fields": {
+    "user_order": null,
+    "user_name": "Gosha",
+    "phone": "+996556602622",
+    "address": "Djal-Artis, 15, 1201",
+    "created_at": "2021-04-23T12:39:28.276Z"
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 9,
+  "fields": {
+    "user_order": null,
+    "user_name": "Begaiym",
+    "phone": "+996556602622",
+    "address": "Djal-Artis, 15, 1201",
+    "created_at": "2021-04-23T12:43:32.556Z"
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 10,
+  "fields": {
+    "user_order": null,
+    "user_name": "Begaiym",
+    "phone": "+996556602622",
+    "address": "Djal-Artis, 15, 1201",
+    "created_at": "2021-04-23T12:51:47.756Z"
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 11,
+  "fields": {
+    "user_order": null,
+    "user_name": "Lolya",
+    "phone": "+996556602622",
+    "address": "Djal-Artis, 15, 1201",
+    "created_at": "2021-04-23T12:59:04.074Z"
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 12,
+  "fields": {
+    "user_order": null,
+    "user_name": "Lolya",
+    "phone": "+996556602622",
+    "address": "Djal-Artis, 15, 1201",
+    "created_at": "2021-04-23T13:00:24.762Z"
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 13,
+  "fields": {
+    "user_order": null,
+    "user_name": "Lol",
+    "phone": "+996556602622",
+    "address": "Djal-Artis, 15, 1201",
+    "created_at": "2021-04-23T13:31:47.260Z"
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 14,
+  "fields": {
+    "user_order": 1,
+    "user_name": "Haha",
+    "phone": "+996556602622",
+    "address": "Djal-Artis, 15, 1201",
+    "created_at": "2021-04-23T13:52:36.144Z"
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 15,
+  "fields": {
+    "user_order": 1,
+    "user_name": "Haha",
+    "phone": "+996556602622",
+    "address": "Djal-Artis, 15, 1201",
+    "created_at": "2021-04-23T13:53:37.903Z"
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 16,
+  "fields": {
+    "user_order": 1,
+    "user_name": "Nunu",
+    "phone": "+996556602622",
+    "address": "Djal-Artis, 15, 1201",
+    "created_at": "2021-04-23T14:01:13.045Z"
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 17,
+  "fields": {
+    "user_order": 1,
+    "user_name": "Nunu",
+    "phone": "+996556602622",
+    "address": "Djal-Artis, 15, 1201",
+    "created_at": "2021-04-23T14:01:35.965Z"
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 18,
+  "fields": {
+    "user_order": 1,
+    "user_name": "Barak",
+    "phone": "+996556602622",
+    "address": "Djal-Artis, 15, 1201",
+    "created_at": "2021-04-24T11:07:09.618Z"
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 19,
+  "fields": {
+    "user_order": 1,
+    "user_name": "Lolya",
+    "phone": "+996556602622",
+    "address": "Djal-Artis, 15, 1201",
+    "created_at": "2021-04-24T11:10:11.481Z"
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 20,
+  "fields": {
+    "user_order": 1,
+    "user_name": "Lolya",
+    "phone": "+996556602622",
+    "address": "Djal-Artis, 15, 1201",
+    "created_at": "2021-04-24T11:15:16.638Z"
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 21,
+  "fields": {
+    "user_order": 1,
+    "user_name": "Lolya",
+    "phone": "+996556602622",
+    "address": "Djal-Artis, 15, 1201",
+    "created_at": "2021-04-24T11:15:45.500Z"
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 22,
+  "fields": {
+    "user_order": null,
+    "user_name": "Lolya",
+    "phone": "+996556602622",
+    "address": "Djal-Artis, 15, 1201",
+    "created_at": "2021-04-25T14:38:41.517Z"
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 23,
+  "fields": {
+    "user_order": 4,
+    "user_name": "Lolya",
+    "phone": "+996556602622",
+    "address": "Djal-Artis, 15, 1201",
+    "created_at": "2021-04-25T14:43:18.680Z"
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 24,
+  "fields": {
+    "user_order": 4,
+    "user_name": "Gosha",
+    "phone": "+996556602622",
+    "address": "Djal-Artis, 15, 1201",
+    "created_at": "2021-04-25T14:43:30.525Z"
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 25,
+  "fields": {
+    "user_order": 4,
+    "user_name": "Lolya",
+    "phone": "+996556602622",
+    "address": "Djal-Artis, 15, 1201",
+    "created_at": "2021-04-25T15:58:49.829Z"
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 26,
+  "fields": {
+    "user_order": 5,
+    "user_name": "Sarah Waynez",
+    "phone": "+996556602622",
+    "address": "Djal-Artis, 15, 1201",
+    "created_at": "2021-04-25T16:01:23.856Z"
+  }
+},
+{
+  "model": "shop.order",
+  "pk": 27,
+  "fields": {
+    "user_order": 5,
+    "user_name": "Lol",
+    "phone": "+996556602622",
+    "address": "Djal-Artis, 15, 1201",
+    "created_at": "2021-04-25T16:26:22.509Z"
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 1,
+  "fields": {
+    "product": 8,
+    "quantity": 1,
+    "order": 1
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 2,
+  "fields": {
+    "product": 1,
+    "quantity": 7,
+    "order": 3
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 3,
+  "fields": {
+    "product": 6,
+    "quantity": 2,
+    "order": 3
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 4,
+  "fields": {
+    "product": 8,
+    "quantity": 2,
+    "order": 3
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 5,
+  "fields": {
+    "product": 11,
+    "quantity": 1,
+    "order": 7
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 6,
+  "fields": {
+    "product": 13,
+    "quantity": 2,
+    "order": 8
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 7,
+  "fields": {
+    "product": 13,
+    "quantity": 1,
+    "order": 9
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 8,
+  "fields": {
+    "product": 13,
+    "quantity": 1,
+    "order": 10
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 9,
+  "fields": {
+    "product": 13,
+    "quantity": 2,
+    "order": 11
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 10,
+  "fields": {
+    "product": 13,
+    "quantity": 1,
+    "order": 12
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 11,
+  "fields": {
+    "product": 8,
+    "quantity": 10,
+    "order": 13
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 12,
+  "fields": {
+    "product": 17,
+    "quantity": 1,
+    "order": 15
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 13,
+  "fields": {
+    "product": 13,
+    "quantity": 1,
+    "order": 15
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 14,
+  "fields": {
+    "product": 14,
+    "quantity": 1,
+    "order": 17
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 15,
+  "fields": {
+    "product": 15,
+    "quantity": 1,
+    "order": 17
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 16,
+  "fields": {
+    "product": 11,
+    "quantity": 1,
+    "order": 18
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 17,
+  "fields": {
+    "product": 13,
+    "quantity": 1,
+    "order": 18
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 18,
+  "fields": {
+    "product": 8,
+    "quantity": 1,
+    "order": 18
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 19,
+  "fields": {
+    "product": 11,
+    "quantity": 1,
+    "order": 19
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 20,
+  "fields": {
+    "product": 13,
+    "quantity": 1,
+    "order": 19
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 21,
+  "fields": {
+    "product": 12,
+    "quantity": 1,
+    "order": 19
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 22,
+  "fields": {
+    "product": 11,
+    "quantity": 10,
+    "order": 21
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 23,
+  "fields": {
+    "product": 11,
+    "quantity": 1,
+    "order": 22
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 24,
+  "fields": {
+    "product": 11,
+    "quantity": 1,
+    "order": 23
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 25,
+  "fields": {
+    "product": 13,
+    "quantity": 2,
+    "order": 23
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 26,
+  "fields": {
+    "product": 8,
+    "quantity": 1,
+    "order": 24
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 27,
+  "fields": {
+    "product": 8,
+    "quantity": 2,
+    "order": 25
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 28,
+  "fields": {
+    "product": 11,
+    "quantity": 1,
+    "order": 26
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 29,
+  "fields": {
+    "product": 13,
+    "quantity": 2,
+    "order": 26
+  }
+},
+{
+  "model": "shop.orderproducts",
+  "pk": 30,
+  "fields": {
+    "product": 17,
+    "quantity": 3,
+    "order": 27
   }
 }
 ]
