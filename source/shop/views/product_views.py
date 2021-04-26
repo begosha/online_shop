@@ -7,9 +7,10 @@ from django.db.models import Q
 from django.utils.http import urlencode
 from django.views.generic.edit import FormMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from .mixins import HitCountMixin
 
 
-class IndexView(ListView):
+class IndexView(HitCountMixin, ListView):
     template_name = 'product/index.html'
     context_object_name = 'products'
     model = Product
@@ -20,6 +21,7 @@ class IndexView(ListView):
     def get(self, request, *args, **kwargs):
         self.form = self.get_search_form()
         self.search_value = self.get_search_value()
+        print(self.request.session['hit'])
         return super().get(request, *args, **kwargs)
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -45,7 +47,7 @@ class IndexView(ListView):
             return self.form.cleaned_data['search']
         return None
 
-class ProductCreateView(PermissionRequiredMixin, CreateView):
+class ProductCreateView(PermissionRequiredMixin, HitCountMixin, CreateView):
     template_name = 'product/product_add_view.html'
     form_class = ProductForm
     model = Product
@@ -64,7 +66,7 @@ class ProductView(DetailView):
     model = Product
     template_name = 'product/product_view.html'
 
-class ProductUpdateView(PermissionRequiredMixin, UpdateView):
+class ProductUpdateView(PermissionRequiredMixin,HitCountMixin, UpdateView):
     form_class = ProductForm
     model = Product
     template_name = 'product/product_update_view.html'
@@ -75,7 +77,7 @@ class ProductUpdateView(PermissionRequiredMixin, UpdateView):
     def get_success_url(self):
         return reverse('product', kwargs={'pk': self.kwargs.get('pk')})
 
-class ProductDeleteView(PermissionRequiredMixin, DeleteView):
+class ProductDeleteView(PermissionRequiredMixin, HitCountMixin, DeleteView):
     model = Product
     context_object_name = 'product'
     success_url = reverse_lazy('index')

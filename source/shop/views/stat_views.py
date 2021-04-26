@@ -12,6 +12,8 @@ class StatView(TemplateView):
             context['time'].append((datetime.now(timezone.utc) - self.request.user.last_login).days)
             context['time'].append(((datetime.now(timezone.utc) - self.request.user.last_login).seconds)//3600)
             context['time'].append(((datetime.now(timezone.utc) - self.request.user.last_login).seconds//60)%60)
+            context['hit'] = []
+            context['hit'].append(self.request.session.get('hit'))
         except AttributeError:
             context = {}
         return context

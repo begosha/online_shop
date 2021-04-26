@@ -5,9 +5,9 @@ from django.views.generic import ListView, DeleteView, CreateView, View
 from django.views.generic.edit import FormMixin
 from django.contrib.sessions.models import Session
 from django.contrib import messages
-# from .mixins import SessionTimeMixin
+from .mixins import HitCountMixin
 
-class CartView(ListView, FormMixin):
+class CartView(HitCountMixin, ListView, FormMixin):
     template_name = 'cart/cart.html'
     context_object_name = 'cart_products'
     paginate_by = 5
@@ -35,8 +35,8 @@ class CartView(ListView, FormMixin):
         return cart
 
 
-class CartAddProductView(CreateView):
-    model = Product
+class CartAddProductView(HitCountMixin, CreateView):
+    model = Product 
     redirect_url = '/products/'
 
     def post(self, request, *args, **kwargs):
@@ -62,7 +62,7 @@ class CartAddProductView(CreateView):
             cart = self.request.session['cart'] = {}
         return cart
 
-class CartDeleteProductView(DeleteView):
+class CartDeleteProductView(HitCountMixin, DeleteView):
     model = Product
     redirect_url = '/products/cart'
 

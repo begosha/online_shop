@@ -24,6 +24,12 @@
             <p>Minutes: {{ minutes }}</p>
             {% endfor %}
             {% endwith %}
+            <h2>Number of visits of different pages</h2>
+            {% for pages in hit %}
+                {% for  key, value in pages.items %}
+                    <p>{{ key }}: {{value}}</p>
+                {% endfor %}
+            {% endfor %}
         {% else %}
         <h1>Login First!!</h1>  
     </div>

@@ -4,9 +4,9 @@ from ..forms import OrderForm
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, CreateView, View
 from django.contrib.auth import get_user_model
+from .mixins import HitCountMixin
 
-
-class OrderList(ListView):
+class OrderList(HitCountMixin, ListView):
     template_name = 'order/orders.html'
     context_object_name = 'orders'
     model = Order
@@ -24,7 +24,7 @@ class OrderList(ListView):
         return queryset
 
 
-class MakeOrderView(CreateView):
+class MakeOrderView(HitCountMixin, CreateView):
     form_class = OrderForm
     model = OrderProducts
 
