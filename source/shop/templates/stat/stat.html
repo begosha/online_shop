@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}{% endblock %}
+{% block content %}
+    <div class="header-info-block">
+            <h1>Online Shop</h1>
+            <p>Online shop for Jujutsu Kaisen Fans</p>
+        </div>
+    
+    <div class="task">
+            <h2>Time spent on this Web Site:</h2>
+            {% with time|slice:":1" as list1 %}
+            {% for days in list1 %}
+            <p>Days: {{ days }}</p>
+            {% endfor %}
+            {% endwith %}
+            {% with time|slice:"1:2" as list2 %}
+            {% for hours in list2 %}
+            <p>Hours: {{ hours }}</p>
+            {% endfor %}
+            {% endwith %}
+            {% with time|slice:"-1:" as list3 %}
+            {% for minutes in list3 %}
+            <p>Minutes: {{ minutes }}</p>
+            {% endfor %}
+            {% endwith %}
+            
+    </div>
+{% endblock %}

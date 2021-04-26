@@ -5,6 +5,7 @@ from django.views.generic import ListView, DeleteView, CreateView, View
 from django.views.generic.edit import FormMixin
 from django.contrib.sessions.models import Session
 from django.contrib import messages
+# from .mixins import SessionTimeMixin
 
 class CartView(ListView, FormMixin):
     template_name = 'cart/cart.html'
@@ -16,7 +17,7 @@ class CartView(ListView, FormMixin):
     def get_queryset(self):
         queryset = []
         total = 0
-        carts = self.request.session.get('cart', {})
+        carts = self.get_cart()
         for id, count in carts.items():
             product = {}
             product['product'] = Product.objects.get(pk=id)
@@ -24,7 +25,14 @@ class CartView(ListView, FormMixin):
             total += Product.objects.get(pk=id).price * count
             queryset.append(product)
         queryset.append(total)
+        # print(str(self.request.user.last_login.strftime('%y-%m-%d %a %H:%M:%S')))
         return queryset
+
+    def get_cart(self):
+        cart = self.request.session.get('cart', {})
+        if not cart:
+            cart = self.request.session['cart'] = {}
+        return cart
 
 
 class CartAddProductView(CreateView):
