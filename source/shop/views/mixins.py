@@ -1,5 +1,6 @@
 from django.contrib.sessions.models import Session
 from django.shortcuts import render
+
 class HitCountMixin():
 
     def dispatch(self, request, *args, **kwargs):

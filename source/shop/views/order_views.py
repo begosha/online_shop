@@ -40,14 +40,24 @@ class MakeOrderView(HitCountMixin, CreateView):
         order.save()
         for id in cart:
             store_product = Product.objects.get(pk=id)
-            make_order = OrderProducts()
-            product = store_product
-            make_order.product = product
-            make_order.quantity=cart[str(product.id)]
-            store_product.remainder -= int(make_order.quantity)
-            make_order.order = order
-            make_order.save()
-            store_product.save()
+            if cart[str(store_product.id)] < store_product.remainder:
+                make_order = OrderProducts()
+                product = store_product
+                make_order.product = product
+                make_order.quantity=cart[str(product.id)]
+                store_product.remainder -= int(make_order.quantity)
+                make_order.order = order
+                make_order.save()
+                store_product.save()
+            else:
+                make_order = OrderProducts()
+                product = store_product
+                make_order.product = product
+                make_order.quantity = store_product.remainder
+                store_product.remainder = 0
+                make_order.order = order
+                make_order.save()
+                store_product.save()
         self.request.session['cart'] = {}
         return self.get_success_url()
 
