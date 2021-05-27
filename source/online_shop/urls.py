@@ -12,5 +12,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('products/', include('shop.urls')),
     path('', include('accounts.urls')),
+    path('api_v1/', include('api.urls')),
     path('', RedirectView.as_view(url=HOMEPAGE_URL, permanent=False))
 ]
